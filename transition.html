@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	
+	.expend-transition{
+		transition:all .3s ease;
+		height:20px;
+		opacity: 1;
+		background-color:red;
+		padding: 10px;
+	}
+	/*.expend-enter{
+		height:0px;
+		opacity: 0;
+		padding: 0 20px;
+	}*/
+	.expend-enter,.expend-leave{
+		height:0px;
+		opacity: 0;
+		padding: 0 20px;
+	}
+	.rotate-transition{
+		transition:all .3s ease;
+		height:20;
+		background-color: red;
+		padding:10px;
+	}
+	.rotate-enter{
+		height: 0;
+		opacity:0;
+		transform:rotate(360deg);
+		padding: 0 20px;
+	}
+	.rotate-leave{
+		height: 0;
+		opacity:0;
+		transform:rotate(360deg);
+		padding: 0 20px;
+	}
+	.staggered-transition{
+		transition:all .6s ease;
+		height:20px;
+		opacity: 1;
+	}
+	.staggered-enter,.staggered-leave{
+		height:0;
+		opacity: 0;
+	}
+</style>
+<body>
+	<div id="demo">
+		<p>{{name}}</p>
+		<p style="color:red;">
+			v-if
+		</p>
+		<button @click="fi=!fi">ok</button>
+		<div v-if="fi" transition="expend">Hello dennis</div>
+		<p style="color:red;">
+			v-show
+		</p>
+		<select v-model="tran">
+			<option value="expend">expend</option>
+			<option value="rotate">rotate</option>
+		</select>
+		<button @click="a=!a">ok</button>
+		<div v-show="a" :transition="tran">Hello dennis</div>
+
+		<p style="color:red;">
+			v-for
+		</p>
+		<input v-model="params">
+		<ul>
+			<li v-for="item in items|filterBy params" transition="staggered">{{item.msg}}</li>
+		</ul>
+	</div>
+</body>
+<script src="vue.js"></script>
+<script>
+	var demo = new Vue({
+		el:'#demo',
+		data:{
+			name:'dennis',
+			fi:true,
+			a:true,
+			tran:'rotate',
+			items:[
+			{
+				msg:'abc'
+			},{
+				msg:'def'
+			},{
+				msg:'ijk'
+			},{
+				msg:'lmn'
+			},{
+				msg:'opq'
+			}],
+			params:'',
+		},
+		methods:{
+
+		},
+	})
+</script>
+</html>
